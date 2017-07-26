@@ -19,7 +19,7 @@ public class ThreadTest {
     @Test
     public void testArrayQueue() {
 
-        new Thread(() -> {
+        Thread put = new Thread(() -> {
             while (true) {
                 try {
                     queue.put(1);
@@ -32,10 +32,12 @@ public class ThreadTest {
                 }
             }
 
-        }).start();
+        });
+        put.start();
 
-        while (true) {
-            new Thread(() -> {
+
+        Thread get = new Thread(() -> {
+            while (true) {
                 try {
                     if (queue.isEmpty()) {
                         Thread.sleep(500);
@@ -44,9 +46,20 @@ public class ThreadTest {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-            }).start();
-        }
-    }
+            }
+        });
+        get.start();
 
+        Thread interripted = new Thread(() -> {
+            try {
+                Thread.sleep(300000l);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            get.interrupt();
+            put.interrupt();
+        });
+        interripted.start();
+    }
 
 }
