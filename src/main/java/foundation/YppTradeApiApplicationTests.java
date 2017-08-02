@@ -7,12 +7,16 @@ import com.alibaba.fastjson.serializer.SerializeWriter;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.serializer.ValueFilter;
 import com.alibaba.fastjson.util.TypeUtils;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.module.SimpleModule;
+import com.fasterxml.jackson.databind.ser.std.DateSerializer;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import org.apache.commons.lang3.ClassUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -40,21 +44,20 @@ public class YppTradeApiApplicationTests {
         objectHashMap.put("4", new Integer(1));
         objectHashMap.put("5", new Double(5.1));
         objectHashMap.put("6", Maps.newConcurrentMap());
-        objectHashMap.put("7", Lists.newArrayList());
+        objectHashMap.put("7", Lists.newArrayList(1, 2.3));
         objectHashMap.put("8", Arrays.asList(1, 2, 3));
         objectHashMap.put("9", Byte.MAX_VALUE);
         objectHashMap.put("9", Boolean.FALSE);
 
 
         ValueFilter filter = (object, name, value) -> {
-            System.out.println(value.getClass());
             if (ClassUtils.isPrimitiveWrapper(value.getClass())) {
                 return String.valueOf(value);
-            } /*else if (value instanceof Collection) {
-                return JsonUtils.toJSONString(value);
-            } else if (value instanceof Objects[]) {
-                return JsonUtils.toJSONString(value);
-            }*/
+            } else if (value instanceof Collection) {
+                return JSON.toJSONString(value);
+            } else if (value instanceof Object[]) {
+                return JSON.toJSONString(value);
+            }
 
             return value;
 
@@ -143,7 +146,7 @@ public class YppTradeApiApplicationTests {
 
     }
 
-   /* @Test
+    @Test
     public void test3() throws JsonProcessingException {
 
         HashMap<String, Object> objectHashMap = Maps.newHashMap();
@@ -168,7 +171,7 @@ public class YppTradeApiApplicationTests {
         module.addSerializer(Date.class, DateSerializer.instance);
         mapper.registerModule(module);
         System.out.println(mapper.writeValueAsString(objectHashMap));
-    }*/
+    }
 
     @Test
     public void test4() throws FileNotFoundException {

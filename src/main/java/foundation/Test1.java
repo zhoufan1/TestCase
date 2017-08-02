@@ -56,12 +56,12 @@ public class Test1 {
 
     @Test
     public void finalTest() {
-
+        final HashMap s = new HashMap(10);
         System.out.println(s);
     }
 
 
-    static public final HashMap s = new HashMap(10);
+
 
 
     ArrayBlockingQueue<Integer> queue  = new ArrayBlockingQueue<Integer>(50);
