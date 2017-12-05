@@ -52,7 +52,7 @@ public class ThreadTest {
 
         Thread interripted = new Thread(() -> {
             try {
-                Thread.sleep(300000l);
+                Thread.sleep(300000L);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

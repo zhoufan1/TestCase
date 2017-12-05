@@ -40,14 +40,14 @@ public class ListThread {
         new Thread(() -> {
             ListThread.add("3");
             try {
-                Thread.sleep(3000l);
+                Thread.sleep(3000L);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }).start();
         new Thread(() -> {
             try {
-                Thread.sleep(3000l);
+                Thread.sleep(3000L);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
