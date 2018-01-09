@@ -1,4 +1,4 @@
-package thread;
+package foundation.thread;
 
 /**
  * Created by zhoufan on 2017/6/9.

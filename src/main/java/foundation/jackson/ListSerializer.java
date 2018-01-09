@@ -1,4 +1,4 @@
-package foundation;
+package foundation.jackson;
 
 import com.alibaba.fastjson.serializer.JSONSerializer;
 import com.alibaba.fastjson.serializer.ObjectSerializer;

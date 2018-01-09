@@ -1,4 +1,4 @@
-package foundation;
+package foundation.jackson;
 
 import org.junit.Test;
 

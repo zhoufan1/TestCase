@@ -1,4 +1,4 @@
-package thread;
+package foundation.thread;
 
 import java.util.ArrayList;
 import java.util.List;
