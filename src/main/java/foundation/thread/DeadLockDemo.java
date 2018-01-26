@@ -1,5 +1,7 @@
 package foundation.thread;
 
+import foundation.files.FileTest;
+
 /**
  * @author:zhoufan
  * @date :2018-01-09 18:05
