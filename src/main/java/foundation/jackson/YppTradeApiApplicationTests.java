@@ -12,8 +12,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.databind.ser.std.DateSerializer;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import java.text.SimpleDateFormat;
 import org.apache.commons.lang3.ClassUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
@@ -153,12 +155,11 @@ public class YppTradeApiApplicationTests {
         objectHashMap.put("1", BigDecimal.ZERO);
         objectHashMap.put("2", new Date());
         objectHashMap.put("3", 3L);
-        objectHashMap.put("4", new Integer(1));
+        objectHashMap.put("4", new Integer(3));
         objectHashMap.put("5", new Double(5.1));
-        objectHashMap.put("6", Maps.newConcurrentMap());
-        objectHashMap.put("7", Lists.newArrayList());
-        objectHashMap.put("8", Arrays.asList(1, 2, 3));
-        objectHashMap.put("9", Byte.MAX_VALUE);
+        objectHashMap.put("6", ImmutableMap.of("key","values"));
+        objectHashMap.put("7", Lists.newArrayList("one"));
+        objectHashMap.put("8", Byte.MAX_VALUE);
         objectHashMap.put("9", Boolean.FALSE);
 
         ObjectMapper mapper = new ObjectMapper();
@@ -168,7 +169,7 @@ public class YppTradeApiApplicationTests {
         module.addSerializer(Boolean.class, ToStringSerializer.instance);
         module.addSerializer(List.class, ToStringSerializer.instance);
         module.addSerializer(Byte.class, ToStringSerializer.instance);
-        module.addSerializer(Date.class, DateSerializer.instance);
+        module.addSerializer(Date.class, new DateSerializer(false,new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")));
         mapper.registerModule(module);
         System.out.println(mapper.writeValueAsString(objectHashMap));
     }
