@@ -211,13 +211,11 @@ public class YppTradeApiApplicationTests {
     @Test
     public void test6() throws NoSuchFieldException, IllegalAccessException {
 
-      /*  System.out.println(Byte.MAX_VALUE);
 
-        System.out.println((Integer) 100 == (Integer) 100);
+        System.out.println(((Integer) 100).equals((Integer) 100));
         System.out.println(new Integer(100).equals(new Integer(100)));
-        System.out.println((Integer) 1000 == (Integer) 1000);
+        System.out.println(((Integer) 1000).equals((Integer) 1000));
         System.out.println(new Integer(1000).equals(new Integer(1000)));
-*/
 /*
         Integer a = 1000, b = 1000;
         System.out.println(a == b);*/
