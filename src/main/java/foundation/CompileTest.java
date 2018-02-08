@@ -5,6 +5,11 @@ package foundation;
  * @date :2018-02-07 16:30
  */
 public class CompileTest {
+    /**
+     * javap 查看编译代码
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         String str = "world";
         switch (str) {
